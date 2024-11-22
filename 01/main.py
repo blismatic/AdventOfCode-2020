@@ -8,10 +8,12 @@ example_input = """"""
 
 def parse(puzzle_input):
     """Parse input."""
-    print(repr(puzzle_input))
-    print()
+    # print(repr(puzzle_input))
+    result = puzzle_input.split("\n")
+    print(result)
 
-    return puzzle_input.split("\n")
+    print()
+    return result
 
 
 def part1(data):
