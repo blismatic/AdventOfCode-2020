@@ -6,26 +6,27 @@ from pprint import pprint
 example_input = """"""
 
 
-def parse(puzzle_input):
+def parse(puzzle_input: str):
     """Parse input."""
-    print(repr(puzzle_input))
-    print()
+    result = puzzle_input.split("\n")
 
-    return puzzle_input.split("\n")
+    pprint(result)
+    print()
+    return result
 
 
 def part1(data):
-    """Solve part 1."""
+    """Solve and return the answer to part 1."""
     pass
 
 
 def part2(data):
-    """Solve part 2."""
+    """Solve and return the answer to part 2."""
     pass
 
 
-def solve(puzzle_input):
-    """Solve the puzzle for the given input."""
+def solve(puzzle_input) -> tuple:
+    """Solve the puzzle for the given input. Returns a tuple containing the answers to part 1 and part 2."""
     data = parse(puzzle_input)
     solution1 = part1(data)
     solution2 = part2(data)

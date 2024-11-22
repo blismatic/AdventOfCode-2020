@@ -6,28 +6,44 @@ from pprint import pprint
 example_input = """"""
 
 
-def parse(puzzle_input):
+def parse(puzzle_input: str):
     """Parse input."""
-    # print(repr(puzzle_input))
     result = puzzle_input.split("\n")
-    print(result)
+    result = [int(e) for e in result]
 
+    pprint(result)
     print()
     return result
 
 
 def part1(data):
-    """Solve part 1."""
-    pass
+    """Solve and return the answer to part 1."""
+    target = 2020
+    processed = set()
+    for num in data:
+        complement = target - num
+        if complement in processed:
+            return complement * num
+        elif num not in processed:
+            processed.add(num)
+
+    return None
 
 
 def part2(data):
-    """Solve part 2."""
-    pass
+    """Solve and return the answer to part 2."""
+    target = 2020
+    for n1 in data[:-2]:
+        for n2 in data[1:-1]:
+            for n3 in data[2:]:
+                if n1 + n2 + n3 == target:
+                    return n1 * n2 * n3
+
+    return None
 
 
-def solve(puzzle_input):
-    """Solve the puzzle for the given input."""
+def solve(puzzle_input) -> tuple:
+    """Solve the puzzle for the given input. Returns a tuple containing the answers to part 1 and part 2."""
     data = parse(puzzle_input)
     solution1 = part1(data)
     solution2 = part2(data)
