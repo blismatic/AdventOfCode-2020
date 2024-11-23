@@ -2,6 +2,7 @@ from aocd import get_data
 from dotenv import load_dotenv
 
 from pprint import pprint
+from collections import Counter
 
 example_input = """"""
 
@@ -9,15 +10,33 @@ example_input = """"""
 def parse(puzzle_input: str):
     """Parse input."""
     result = puzzle_input.split("\n")
+    temp = [line.split(" ") for line in result]
+    result = []
+    for row in temp:
+        char_range = row[0].split("-")
+        _min = int(char_range[0])
+        _max = int(char_range[1])
 
-    pprint(result)
+        result.append({"_min": _min, "_max": _max, "letter": row[1][0], "password": row[2]})
+
+    pprint(result[:4])
     print()
     return result
 
 
-def part1(data):
+def part1(data: list[dict]):
     """Solve and return the answer to part 1."""
-    pass
+
+    def is_valid(row: dict) -> int:
+        c = Counter(row["password"])
+        num_letters = c[row["letter"]]
+        if row["_min"] <= num_letters <= row["_max"]:
+            return 1
+        else:
+            return 0
+
+    num_valid_passwords = sum([is_valid(row) for row in data])
+    return num_valid_passwords
 
 
 def part2(data):
@@ -37,7 +56,7 @@ def solve(puzzle_input) -> tuple:
 if __name__ == "__main__":
     load_dotenv()
     # solutions = solve(example_input)
-    puzzle_input = get_data(day=1, year=2020)
+    puzzle_input = get_data(day=2, year=2020)
     solutions = solve(puzzle_input)
 
     print("\n".join(str(solution) for solution in solutions))
