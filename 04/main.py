@@ -37,7 +37,7 @@ def solve(puzzle_input) -> tuple:
 if __name__ == "__main__":
     load_dotenv()
     # solutions = solve(example_input)
-    puzzle_input = get_data(day=1, year=2020)
+    puzzle_input = get_data(day=4, year=2020)
     solutions = solve(puzzle_input)
 
     print("\n".join(str(solution) for solution in solutions))
