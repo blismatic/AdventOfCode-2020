@@ -2,13 +2,30 @@ from aocd import get_data
 from dotenv import load_dotenv
 
 from pprint import pprint
+from dataclasses import dataclass
 
 example_input = """"""
 
 
+@dataclass
+class Passport:
+    byr: str = None
+    iyr: str = None
+    eyr: str = None
+    hgt: str = None
+    hcl: str = None
+    ecl: str = None
+    pid: str = None
+    cid: str = None
+
+    def is_valid(self) -> bool:
+        return all([self.byr, self.iyr, self.eyr, self.hgt, self.hcl, self.ecl, self.pid])
+
+
 def parse(puzzle_input: str):
     """Parse input."""
-    result = puzzle_input.split("\n")
+    result = puzzle_input.split("\n\n")
+    result = [passport.replace("\n", " ") for passport in result]
 
     pprint(result[:3])
     print()
