@@ -41,7 +41,20 @@ def part1(data: list[dict]):
 
 def part2(data):
     """Solve and return the answer to part 2."""
-    pass
+
+    def is_valid(row: dict) -> int:
+        pos_1 = row["_min"] - 1  # Toboggan Corporate Policies use 1 based indexing, but we want 0 based.
+        pos_2 = row["_max"] - 1
+        letter = row["letter"]
+        password = row["password"]
+
+        if (password[pos_1] == letter and password[pos_2] != letter) or (password[pos_1] != letter and password[pos_2] == letter):
+            return 1
+        else:
+            return 0
+
+    num_valid_passwords = sum([is_valid(row) for row in data])
+    return num_valid_passwords
 
 
 def solve(puzzle_input) -> tuple:
