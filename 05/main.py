@@ -34,9 +34,13 @@ def part1(data: list[str]):
     return highest_seat_id
 
 
-def part2(data):
+def part2(data: list[str]):
     """Solve and return the answer to part 2."""
-    pass
+    all_seat_ids = sorted([get_seat_id(boarding_pass) for boarding_pass in data])
+
+    for seat_id in all_seat_ids:
+        if seat_id + 1 not in all_seat_ids:
+            return seat_id + 1
 
 
 def solve(puzzle_input) -> tuple:
