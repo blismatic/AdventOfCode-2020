@@ -26,15 +26,21 @@ def parse(puzzle_input: str):
     """Parse input."""
     result = puzzle_input.split("\n\n")
     result = [passport.replace("\n", " ") for passport in result]
+    result = [dict(passport.split(":") for passport in passport.split()) for passport in result]
+    result = [Passport(**item) for item in result]
 
-    pprint(result[:3])
+    pprint(result[1])
     print()
     return result
 
 
-def part1(data):
+def part1(data: list[Passport]):
     """Solve and return the answer to part 1."""
-    pass
+    count = 0
+    for passport in data:
+        if passport.is_valid():
+            count += 1
+    return count
 
 
 def part2(data):
