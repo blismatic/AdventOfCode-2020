@@ -24,6 +24,14 @@ def unique_answers(group: list[str]) -> int:
     return len(answers)
 
 
+def similar_answers(group: list[str]) -> int:
+    """Returns the number of answers that everyone in a group answered yes to."""
+    answers = set(group[0])
+    for person in group[1:]:
+        answers = answers.intersection(person)
+    return len(answers)
+
+
 def part1(data: list[list[str]]):
     """Solve and return the answer to part 1."""
     result = 0
@@ -34,7 +42,10 @@ def part1(data: list[list[str]]):
 
 def part2(data):
     """Solve and return the answer to part 2."""
-    pass
+    result = 0
+    for group in data:
+        result += similar_answers(group)
+    return result
 
 
 def solve(puzzle_input) -> tuple:
